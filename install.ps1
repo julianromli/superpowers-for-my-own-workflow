@@ -1,10 +1,10 @@
 # Superpowers Installer for Droid CLI (Windows PowerShell)
-# Usage: irm https://raw.githubusercontent.com/YOUR_USERNAME/superpowers/main/install.ps1 | iex
+# Usage: irm https://raw.githubusercontent.com/galangryandana/superpowers-for-my-own-workflow/main/install.ps1 | iex
 
 $ErrorActionPreference = "Stop"
 
-$DROID_DIR = "$env:USERPROFILE\.droid"
-$REPO_URL = "https://github.com/YOUR_USERNAME/superpowers.git"
+$FACTORY_DIR = "$env:USERPROFILE\.factory"
+$REPO_URL = "https://github.com/galangryandana/superpowers-for-my-own-workflow.git"
 $TEMP_DIR = Join-Path $env:TEMP "superpowers-$(Get-Random)"
 
 Write-Host "🚀 Installing Superpowers for Droid CLI..." -ForegroundColor Cyan
@@ -13,14 +13,14 @@ Write-Host "🚀 Installing Superpowers for Droid CLI..." -ForegroundColor Cyan
 git clone --depth 1 $REPO_URL $TEMP_DIR 2>$null
 
 # Create directories
-New-Item -ItemType Directory -Force -Path "$DROID_DIR\skills" | Out-Null
-New-Item -ItemType Directory -Force -Path "$DROID_DIR\droids" | Out-Null
-New-Item -ItemType Directory -Force -Path "$DROID_DIR\commands" | Out-Null
+New-Item -ItemType Directory -Force -Path "$FACTORY_DIR\skills" | Out-Null
+New-Item -ItemType Directory -Force -Path "$FACTORY_DIR\droids" | Out-Null
+New-Item -ItemType Directory -Force -Path "$FACTORY_DIR\commands" | Out-Null
 
 # Copy folders
-Copy-Item -Path "$TEMP_DIR\skills\*" -Destination "$DROID_DIR\skills" -Recurse -Force
-Copy-Item -Path "$TEMP_DIR\droids\*" -Destination "$DROID_DIR\droids" -Recurse -Force
-Copy-Item -Path "$TEMP_DIR\commands\*" -Destination "$DROID_DIR\commands" -Recurse -Force
+Copy-Item -Path "$TEMP_DIR\skills\*" -Destination "$FACTORY_DIR\skills" -Recurse -Force
+Copy-Item -Path "$TEMP_DIR\droids\*" -Destination "$FACTORY_DIR\droids" -Recurse -Force
+Copy-Item -Path "$TEMP_DIR\commands\*" -Destination "$FACTORY_DIR\commands" -Recurse -Force
 
 # AGENTS.md content
 $AGENTS_CONTENT = @"
@@ -46,7 +46,7 @@ If NO → Load it FIRST, output nothing else before it
 If YES → Proceed with response
 "@
 
-$AGENTS_FILE = "$DROID_DIR\AGENTS.md"
+$AGENTS_FILE = "$FACTORY_DIR\AGENTS.md"
 
 if (Test-Path $AGENTS_FILE) {
     $content = Get-Content $AGENTS_FILE -Raw
@@ -66,7 +66,7 @@ Remove-Item -Path $TEMP_DIR -Recurse -Force
 
 Write-Host "✅ Superpowers installed successfully!" -ForegroundColor Green
 Write-Host ""
-Write-Host "Installed to: $DROID_DIR"
+Write-Host "Installed to: $FACTORY_DIR"
 Write-Host "  - skills\   (21 workflows)"
 Write-Host "  - droids\   (49 specialists)"
 Write-Host "  - commands\ (quick commands)"

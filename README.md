@@ -12,6 +12,8 @@ Repo ini adalah **fork termodifikasi** dari [obra/superpowers](https://github.co
 - Commands dioptimasi untuk workflow Droid
 - Beberapa syntax dan path telah disesuaikan
 
+**Jangan gunakan superpowers original untuk Droid** - akan ada inkompabilitas karena perbedaan arsitektur antara Claude Code dan Droid CLI.
+
 ## Instalasi
 
 ### macOS / Linux
@@ -42,7 +44,7 @@ chmod +x install.sh && ./install.sh
 ## Apa yang di-install?
 
 ```
-~/.droid/
+~/.factory/
 ├── AGENTS.md    # Konfigurasi (append, tidak menimpa file existing)
 ├── skills/      # 21 workflow protocols (Droid-compatible)
 ├── droids/      # 49 specialist agents
